@@ -7,7 +7,8 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(blog_params)
+    @user = User.find(current_user.id)
+    @blog = @user.blogs.new(blog_params)
     @blog.user_id = current_user.id
     if @blog.save
       # flash[:message] = 'blog created'
