@@ -21,14 +21,16 @@
       <a href="blogs/<%=b.id%>">Comment</a>
     </div>
     <% b.comments.each do |c| %>
-      <%= c.user_id %>
-      <a href="#">Edit</a>
-
+      <% if c.user_id == current_user.id %>
+      <a href="/blogs/<%= c.blog_id %>/comments/<%= c.id %>">Edit</a>
+      <%= c.content %>
+      <%= User.find(c.user_id).username %>
+      <% else %>
       <div class="">
         <%= c.content %>
         <%= User.find(c.user_id).username %>
-
       </div>
+      <% end %>
     <% end %>
     <hr>
   </div>
