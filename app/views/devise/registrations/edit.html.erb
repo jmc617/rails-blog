@@ -4,6 +4,21 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :subject_or_grade_level %><br />
+    <%= f.text_field :subject_or_grade, autofocus: true, autocomplete: "subject_or_grade" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city_and_state %><br />
+    <%= f.text_field :location, autofocus: true, autocomplete: "subject_or_grade" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>

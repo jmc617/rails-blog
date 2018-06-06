@@ -13,6 +13,8 @@
     <nav>
       <a href="/">Welcome</a>
       <% if user_signed_in? %>
+      <a href="/blogs/<%=current_user.id%>">View/Edit your Blogs</a>
+      <a href="/users/edit">View/Edit Account</a>
       <%= link_to "Sign out", destroy_user_session_path, method: :delete%>
       <a href="/blogs/new">Write New Blog</a>
       <% else %>

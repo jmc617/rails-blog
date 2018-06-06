@@ -1,2 +1,35 @@
 <h1>Blogs#index</h1>
 <p>Find me in app/views/blogs/index.html.erb</p>
+
+<% @blogs.each do |b| %>
+  <div class="">
+    <% if user_signed_in? && b.user.id == current_user.id%>
+    <a href="/blogs/<%=b.id%>/edit"><%= b.title %></a>
+    <% else %>
+    <%= b.title %>
+    <% end %>
+    <div><%= b.content %></div>
+    <div>
+      <%= b.user.username %>
+      <%= 'Subject or Grade Level: ' + b.user.subject_or_grade %>
+      <%= 'Location: ' + b.user.location %>
+    </div>
+    <!-- <div class="">
+      <%= b.comments %>
+    </div> -->
+    <div class="">
+      <a href="blogs/<%=b.id%>">Comment</a>
+    </div>
+    <% b.comments.each do |c| %>
+      <% if c.user_id == current_user.id %>
+      <a href="#">Edit</a>
+      <% else %>
+      <div class="">
+        <%= c.content %>
+        <%= User.find(c.user_id).username %>
+      <%end%>
+      </div>
+    <% end %>
+    <hr>
+  </div>
+<% end %>

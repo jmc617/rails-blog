@@ -1,9 +1,17 @@
 class BlogsController < ApplicationController
   def index
+    @blogs = Blog.all
+    @comment = Comment.new()
   end
 
-  def new
-    @blog = Blog.new
+  def show
+    @blog = Blog.find(params[:id])
+    @comment = Comment.new
+  end
+
+  def comment
+   @blog = Blog.find(params[:id])
+   @comment = Comment.new
   end
 
   def create
@@ -15,13 +23,34 @@ class BlogsController < ApplicationController
       redirect_to "/"
     else
       # flash[:message] = 'please try again'
-      render "/blogs/new"
-    end
+      render "/"
+  end
+end
+
+  def new
+    @blog = Blog.new
   end
 
   def edit
+    @blog = Blog.find(params[:id])
+  end
+
+  def update
+    @blog = Blog.find(params[:id])
+    if @blog.update(blog_params)
+      redirect_to "/"
+    else
+      render edit_blog_path
+    end
   end
 end
+
+def destroy
+  blog = Blog.find(params[:id])
+  blog.destroy
+  redirect_to "/blogs/current_user.id"
+end
+
 
 def blog_params
   params.require(:blog).permit(:title, :content)

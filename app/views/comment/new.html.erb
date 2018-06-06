@@ -1,0 +1,14 @@
+<h1>Comment#new</h1>
+<p>Find me in app/views/comment/new.html.erb</p>
+
+<h2>Comment</h2>
+<div class="">
+  <%= @blog.content =%>
+</div>
+
+<%= form_for @comment do |f| %>
+
+    Content:<%= f.text_field :content %>
+
+    <%= f.submit "Post Comment"%>
+<%end%>
