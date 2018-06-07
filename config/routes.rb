@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # get 'comment/new'
   # get 'comment/:id/edit' => 'comment#edit'
   # get 'comment/show'
-
+  get 'blogs/:id/profile'=> 'blogs#profile'
   get 'blogs/:id/comment' => "blogs#comment"
   # get 'destroy' => 'blogs#destroy'
   devise_for :users, :controllers => { registrations: 'registrations' }

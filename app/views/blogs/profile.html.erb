@@ -1,0 +1,17 @@
+<h2>your blogs</h2>
+<h3>Edit your blogs</h3>
+<% @blogs.each do |b| %>
+
+<div class="">
+  <%= b.title %>
+  <%= b.content %>
+</div>
+<% @blog = b %>
+<%= form_for b do |f| %>
+
+    Title:<%= f.text_field :title %>
+    Content:<%= f.text_field :content %>
+
+    <%= f.submit "Edit Blog"%>
+<%end%>
+<% end %>

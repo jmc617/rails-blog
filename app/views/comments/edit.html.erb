@@ -1,0 +1,15 @@
+<h1>Comment#edit</h1>
+<p>Find me in app/views/comment/edit.html.erb</p>
+
+<% comment = Comment.find(params[:id]) %>
+<% blog = Blog.find(params[:blog_id]) %>
+
+<%= form_for [blog,comment] do |f| %>
+
+    Content:<%= f.text_field :content %>
+
+    <%= f.submit "publish changes"%>
+
+<%end%>
+<%= link_to 'Delete', blog_comment_path(comment), method: :delete,
+                         data: { confirm: 'Are you sure?' } %>

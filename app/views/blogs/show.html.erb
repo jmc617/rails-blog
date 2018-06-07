@@ -1,6 +1,8 @@
 
 <h3>Write Comment</h3>
 <div class="">
+  <%= @blog.title %>
   <%= @blog.content %>
+  <%= User.find(@blog.user_id).username %>
 </div>
-<%= render 'comment/form' %>
+<%= render 'form' %>

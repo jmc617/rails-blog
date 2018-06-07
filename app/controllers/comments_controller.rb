@@ -14,17 +14,39 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @blog = Blog.find(params[:blog_id])
+    @comment = Comment.find(params[:id])
+
+    if @comment.update(comment_params)
+      redirect_to "/"
+    else
+      render edit_comment_path
+    end
+  end
+
+
   def index
 
   end
 
+  def destroy
+    comment = Comment.find(params[:id])
+    if comment.destroy
+      redirect_to "/"
+    else render edit_comment_path
+    end
+  end
+
   def edit
+    @comment = Comment.find(params[:id])
+    @blog = Blog.find(params[:blog_id])
   end
 
   def show
   end
+end
 
   def comment_params
     params.require(:comment).permit(:content)
   end
-end

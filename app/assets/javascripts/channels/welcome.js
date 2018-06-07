@@ -1,4 +1,4 @@
-// 1.wrap functions to have them work when page loaded
+// // 1.wrap functions to have them work when page loaded
 // window.addEventListenter("DOMContentLoaded", function(){
 //
 // })

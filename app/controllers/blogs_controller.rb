@@ -9,6 +9,11 @@ class BlogsController < ApplicationController
     @comment = Comment.new
   end
 
+  def profile
+    @user = User.find(params[:id])
+    @blogs = @user.blogs
+  end
+
   def comment
    @blog = Blog.find(params[:id])
    @comment = Comment.new
@@ -43,12 +48,13 @@ end
       render edit_blog_path
     end
   end
-end
+
 
 def destroy
   blog = Blog.find(params[:id])
   blog.destroy
-  redirect_to "/blogs/current_user.id"
+  redirect_to blogs_path(:id => current_user.id)
+end
 end
 
 

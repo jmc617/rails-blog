@@ -4,7 +4,8 @@
 <% @blogs.each do |b| %>
   <div class="">
     <% if user_signed_in? && b.user.id == current_user.id%>
-    <a href="/blogs/<%=b.id%>/edit"><%= b.title %></a>
+    <%= b.title %>
+    <a href="/blogs/<%=b.id%>/edit">Edit</a>
     <% else %>
     <%= b.title %>
     <% end %>
@@ -17,12 +18,17 @@
     <!-- <div class="">
       <%= b.comments %>
     </div> -->
+    <% if user_signed_in? %>
     <div class="">
       <a href="blogs/<%=b.id%>">Comment</a>
     </div>
+    <% end %>
     <% b.comments.each do |c| %>
-      <% if c.user_id == current_user.id %>
-      <a href="/blogs/<%= c.blog_id %>/comments/<%= c.id %>">Edit</a>
+      <% if user_signed_in? && c.user_id == current_user.id %>
+      <!-- <%= link_to "Edit", edit_blog_comment_path(c.blog_id, c.id) %> -->
+      <div>
+      <a href="/blogs/<%= c.blog_id %>/comments/<%= c.id %>/edit">Edit</a>
+      </div>
       <%= c.content %>
       <%= User.find(c.user_id).username %>
       <% else %>
@@ -30,6 +36,7 @@
         <%= c.content %>
         <%= User.find(c.user_id).username %>
       </div>
+      <hr>
       <% end %>
     <% end %>
     <hr>
