@@ -1,17 +1,44 @@
-<h2>your blogs</h2>
-<h3>Edit your blogs</h3>
-<% @blogs.each do |b| %>
+<% if user_signed_in? && @user.id == current_user.id %>
+  <h2>your blogs</h2>
 
-<div class="">
-  <%= b.title %>
-  <%= b.content %>
-</div>
+  <% @blogs.reverse.each do |b| %>
+    <div class="card">
+      <%= b.title %>
+      <div class='blog-content'><%= b.content %></div>
+      <% b.comments.each do |c| %>
+      <div>
+          <a href="/blogs/<%= c.blog_id %>/comments/<%= c.id %>/edit">edit</a>
+      </div>
+      <%= c.content %>
+      <%= User.find(c.user_id).username %>
+      <hr>
+    </div>
+  <% end %>
+
 <% @blog = b %>
 <%= form_for b do |f| %>
 
-    Title:<%= f.text_field :title %>
-    Content:<%= f.text_field :content %>
+    <div>title:<%= f.text_field :title %></div>
+    <div>content:<%= f.text_area :content %></div>
 
-    <%= f.submit "Edit Blog"%>
+    <%= f.submit "edit blog"%>
 <%end%>
+<%= link_to 'delete', blog_path(@blog), method: :delete,
+                         data: { confirm: 'Are you sure?' } %>
+<hr>
+<!-- <% end %> -->
+<% else %>
+  <div><%= @user.username %></div>
+  <div><%= @user.location %></div>
+  <div><%= @user.subject_or_grade %></div>
+  <h3><%= @user.username %>'s most recent blogs:</h3>
+  <% @blogs.reverse.take(10).each do |b| %>
+    <div class="card">
+      <div><%= b.title %></div>
+      <div class="blog-content"><%= b.content %></div>
+      <% b.comments.each do |c| %>
+        <div><%= c.content %></div>
+    </div>
+    <% end %>
+  <% end %>
 <% end %>

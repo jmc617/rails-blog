@@ -1,50 +1,42 @@
-<h1>Blogs#index</h1>
-<p>Find me in app/views/blogs/index.html.erb</p>
 
-<% @blogs.each do |b| %>
-  <div class="">
+<% @blogs.reverse.take(10).each do |b| %>
+  <div class="card">
     <% if user_signed_in? && b.user.id == current_user.id%>
-    <%= b.title %>
-    <a href="/blogs/<%=b.id%>/edit">Edit</a>
+    <div class="blog-title"><%= b.title %><a href="/blogs/<%=b.id%>/edit">edit</a></div>
+
     <% else %>
-    <%= b.title %>
+    <div class="blog-title"><%= b.title %></div>
     <% end %>
-    <div><%= b.content %></div>
+    <p class='blog-content'><%= b.content %></p>
     <div>
-      <%= b.user.username %>
-      <%= 'Subject or Grade Level: ' + b.user.subject_or_grade %>
-      <%= 'Location: ' + b.user.location %>
+      written by:
+      <a href='/blogs/<%=b.user.id%>/profile'><%= b.user.username %></a> |
+      <%= b.user.subject_or_grade  %> |
+      <%= b.user.location  %>
     </div>
-    <!-- <div class="">
-      <%= b.comments %>
-    </div> -->
+    <% b.comments.each do |c| %>
+      <% if user_signed_in? && c.user_id == current_user.id %>
+      <div><%= c.content %></div>
+      <div>
+        <a href="/blogs/<%= c.blog_id %>/comments/<%= c.id %>/edit">edit</a>
+      </div>
+      <div>-<%= User.find(c.user_id).username %></div>
+      <% else %>
+      <div class="">
+        <%= c.content %> |
+        <a href='/blogs/<%=c.user.id%>/profile'><%= User.find(c.user_id).username %></a>
+      </div>
+      <% end %>
+
+    <% end %>
     <% if user_signed_in? %>
     <div class="">
       <% @blog = Blog.find(b.id) %>
       <%= form_for [@blog, @comment] do |f| %>
-
-          Comment:<%= f.text_field :content %>
-
-          <%= f.submit "Post Comment"%>
+          comment:<%= f.text_field :content %>
+          <%= f.submit "post comment"%>
       <%end%>
     </div>
     <% end %>
-    <% b.comments.each do |c| %>
-      <% if user_signed_in? && c.user_id == current_user.id %>
-      <!-- <%= link_to "Edit", edit_blog_comment_path(c.blog_id, c.id) %> -->
-      <div>
-      <a href="/blogs/<%= c.blog_id %>/comments/<%= c.id %>/edit">Edit</a>
-      </div>
-      <%= c.content %>
-      <%= User.find(c.user_id).username %>
-      <% else %>
-      <div class="">
-        <%= c.content %>
-        <%= User.find(c.user_id).username %>
-      </div>
-      <hr>
-      <% end %>
-    <% end %>
-    <hr>
   </div>
 <% end %>

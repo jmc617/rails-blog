@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Devise2</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Schoolbell|Fredericka+the+Great|Kalam" rel="stylesheet">
+    <%= favicon_link_tag asset_path('pencil.png'), :rel => 'icon', :type =>  'image/png' %>
+    <title>Teacher's Lounge</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+    <div id="pg-title">Teacher's Lounge</div>
     <nav>
-      <a href="/">Welcome</a>
+      <a class='nav-links'href="/">blog feed</a>
       <% if user_signed_in? %>
-      <a href="/blogs/<%=current_user.id%>/profile">View/Edit your Blogs</a>
-      <a href="/users/edit">View/Edit Account</a>
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete%>
-      <a href="/blogs/new">Write New Blog</a>
+      <a class='nav-links'href="/blogs/new">write blog</a>
+      <a class='nav-links'href="/blogs/<%=current_user.id%>/profile">my blogs</a>
+      <a class='nav-links'href="/users/edit">account</a>
+      <%= link_to "logout", destroy_user_session_path, method: :delete, class: 'nav-links'%>
+
       <% else %>
-      <a href="/users/sign_in">Create Account/Sign In</a>
+      <a class='nav-links' href="/users/sign_in">login|create account</a>
       <% end %>
 
     </nav>

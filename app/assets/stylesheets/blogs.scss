@@ -1,3 +1,41 @@
 // Place all the styles related to the blogs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.card {
+  background-color: #39ac39;
+  padding: 20px;
+  margin: 10px auto;
+  border-radius: 20px;
+  width: 85%;
+}
+.blog-content {
+  // max-width: 50%;
+  margin: 0 auto;
+  color: black;
+  width: 80%;
+  background-color: rgba(255,255,255,.3);
+  word-wrap: break-word;
+}
+
+.comment-edit-link:link {
+  color: #2D6C8A;
+}
+.comment-edit-link:hover {
+  color: black;
+}
+.comment-edit-link:visited {
+  color: #2D6C8A;
+}
+input[type=text]  {
+  background-color: #E4EABE;
+  padding: 5px;
+  text-align: left;
+  border-radius: 5px;
+}
+input[type=submit] {
+  border-radius: 25px;
+  background-color: black;
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+}

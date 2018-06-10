@@ -1,6 +1,6 @@
-
-
-<%= form_for [@blog, @comment] do |f| %>
-  <%= f.text_area :content %><br>
-  <%= f.submit %>
-<% end %>
+<div class='form-partial'>
+  <%= form_for [@blog, @comment] do |f| %>
+    <%= f.text_area :content %><br>
+    <%= f.submit %>
+    <% end %>
+</div>

@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   def index
     @blogs = Blog.all
-    @comment = Comment.new()
+    @comment = Comment.new
   end
 
   def show
