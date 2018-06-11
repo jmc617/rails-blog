@@ -47,10 +47,11 @@
    margin-bottom: 10px;
  }
  .blog-title {
-   font-size: 30px;
+   font-size: 40px;
    color: white;
-   font-weight: bold;
-   font-family: 'Schoolbell', cursive;
+   /* font-weight: bold; */
+   font-family: 'Kalam', cursive;
+   /* font-family: 'Schoolbell', cursive; */
  }
  textarea {
    width: 80%;

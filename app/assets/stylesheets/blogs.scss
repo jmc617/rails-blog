@@ -8,13 +8,15 @@
   border-radius: 20px;
   width: 85%;
 }
-.blog-content {
+.blog-content, .comment-content {
   // max-width: 50%;
   margin: 0 auto;
+  margin-bottom: 8px;
   color: black;
   width: 80%;
   background-color: rgba(255,255,255,.3);
   word-wrap: break-word;
+  padding: 4px;
 }
 
 .comment-edit-link:link {
@@ -32,10 +34,22 @@ input[type=text]  {
   text-align: left;
   border-radius: 5px;
 }
-input[type=submit] {
+input[type=submit], .comment-btns {
   border-radius: 25px;
   background-color: black;
   padding: 5px;
   color: white;
   font-weight: bold;
+}
+.comment-forms{
+  display: none;
+}
+.comment-btns{
+  display: inline-block;
+}
+
+#profile-info {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
 }

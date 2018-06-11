@@ -16,25 +16,25 @@
     </div>
     <% b.comments.each do |c| %>
       <% if user_signed_in? && c.user_id == current_user.id %>
-      <div><%= c.content %></div>
-      <div>
+      <p class='comment-content'><%= c.content %></p>
+      <div>-<%= User.find(c.user_id).username %>
         <a href="/blogs/<%= c.blog_id %>/comments/<%= c.id %>/edit">edit</a>
       </div>
-      <div>-<%= User.find(c.user_id).username %></div>
       <% else %>
-      <div class="">
-        <%= c.content %> |
-        <a href='/blogs/<%=c.user.id%>/profile'><%= User.find(c.user_id).username %></a>
-      </div>
+      <p class="comment-content">
+        <%= c.content %>
+      </p>
+      <div>-<a href='/blogs/<%=c.user.id%>/profile'><%= User.find(c.user_id).username %></a></div>
       <% end %>
 
     <% end %>
     <% if user_signed_in? %>
-    <div class="">
+    <div class="comment-btns">click to comment</div>
+    <div class='comment-forms'>Hi
       <% @blog = Blog.find(b.id) %>
       <%= form_for [@blog, @comment] do |f| %>
           comment:<%= f.text_field :content %>
-          <%= f.submit "post comment"%>
+          <%= f.submit id: "comment-submit"  "post comment"%>
       <%end%>
     </div>
     <% end %>
