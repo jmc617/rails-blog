@@ -13,6 +13,7 @@
   </head>
 <div>
   <body>
+   <div class="main-container">
     <div id="pg-title">Teacher's Lounge</div>
     <nav>
       <a class='nav-links'href="/">blog feed</a>
@@ -31,11 +32,11 @@
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
-
+    <footer>
+      <div id="footer">
+        &copy; 2018 Jessica Clay
+      </div>
+    </footer>
   </body>
-  <footer>
-    <div id="footer">
-      &copy; 2018 Jessica Clay
-    </div>
-  </footer>
+</div>
 </html>
